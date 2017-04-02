@@ -103,12 +103,10 @@ feature -SOFTSPI
 feature -ESC_SENSOR
 feature RX_PPM
 feature VBAT
+feature GPS
 feature FAILSAFE
 feature TELEMETRY
 feature CURRENT_METER
-feature RSSI_ADC
-feature BLACKBOX
-feature TRANSPONDER
 beeper GYRO_CALIBRATED
 beeper RX_LOST
 beeper RX_LOST_LANDING
@@ -129,8 +127,8 @@ beeper SYSTEM_INIT
 beeper ON_USB
 map AETR1234
 serial 0 1 115200 57600 0 115200
-serial 1 0 115200 57600 0 115200
-serial 2 0 115200 57600 0 115200
+serial 1 4 115200 57600 0 115200
+serial 2 2 115200 57600 0 115200
 led 0 0,0::C:0
 led 1 0,0::C:0
 led 2 0,0::C:0
@@ -227,14 +225,14 @@ mode_color 6 8 0
 mode_color 6 9 0
 mode_color 6 10 0
 mode_color 7 0 3
-aux 0 0 0 900 900
-aux 1 0 0 900 900
-aux 2 0 0 900 900
-aux 3 0 0 900 900
-aux 4 0 0 900 900
-aux 5 0 0 900 900
-aux 6 0 0 900 900
-aux 7 0 0 900 900
+aux 0 0 0 1075 2100
+aux 1 27 0 1350 1650
+aux 2 1 0 1075 1225
+aux 3 1 1 1275 2100
+aux 4 4 1 1675 2100
+aux 5 10 1 1225 2100
+aux 6 29 0 1500 1650
+aux 7 18 1 1700 2100
 aux 8 0 0 900 900
 aux 9 0 0 900 900
 aux 10 0 0 900 900
@@ -285,7 +283,7 @@ rxfail 15 h
 rxfail 16 h
 rxfail 17 h
 set task_statistics = ON
-set mid_rc = 1500
+set mid_rc = 1501
 set min_check = 1100
 set max_check = 1900
 set rssi_channel = 0
@@ -295,11 +293,11 @@ set rc_interp_ch = RP
 set rc_interp_int = 19
 set rssi_ppm_invert = OFF
 set input_filtering_mode = OFF
-set fpv_mix_degrees = 0
+set fpv_mix_degrees = 30
 set max_aux_channels = 14
 set debug_mode = NONE
-set min_throttle = 1070
-set max_throttle = 2000
+set min_throttle = 1100
+set max_throttle = 1982
 set min_command = 1000
 set digital_idle_percent =  4.500
 set 3d_deadband_low = 1406
@@ -309,15 +307,15 @@ set 3d_deadband_throttle = 50
 set use_unsynced_pwm = OFF
 set motor_pwm_protocol = ONESHOT125
 set motor_pwm_rate = 480
-set disarm_kill_switch = ON
+set disarm_kill_switch = OFF
 set gyro_cal_on_first_arm = OFF
 set auto_disarm_delay = 5
 set small_angle = 25
 set fixedwing_althold_dir = 1
 set reboot_character = 82
 set serial_update_rate_hz = 100
-set gps_provider = NMEA
-set gps_sbas_mode = AUTO
+set gps_provider = UBLOX
+set gps_sbas_mode = EGNOS
 set gps_auto_config = ON
 set gps_auto_baud = OFF
 set gps_wp_radius = 200
@@ -348,8 +346,8 @@ set vbat_max_cell_voltage = 43
 set vbat_min_cell_voltage = 33
 set vbat_warning_cell_voltage = 35
 set vbat_hysteresis = 1
-set ibat_scale = 400
-set ibat_offset = 0
+set ibat_scale = 600
+set ibat_offset = 30
 set mwii_ibat_output = OFF
 set current_meter_type = ADC
 set battery_meter_type = ADC
@@ -359,10 +357,10 @@ set use_cbat_alerts = OFF
 set cbat_alert_percent = 10
 set align_gyro = DEFAULT
 set align_acc = DEFAULT
-set align_mag = DEFAULT
+set align_mag = CW180FLIP
 set align_board_roll = 0
 set align_board_pitch = 0
-set align_board_yaw = 0
+set align_board_yaw = 90
 set gyro_lpf = OFF
 set gyro_sync_denom = 4
 set gyro_use_32khz = OFF
@@ -377,8 +375,8 @@ set imu_dcm_kp = 2500
 set imu_dcm_ki = 0
 set alt_hold_deadband = 40
 set alt_hold_fast_change = ON
-set deadband = 0
-set yaw_deadband = 0
+set deadband = 5
+set yaw_deadband = 5
 set thr_corr_value = 0
 set thr_corr_angle = 800
 set yaw_control_direction = 1
@@ -411,30 +409,30 @@ set baro_noise_lpf =  0.600
 set baro_cf_vel =  0.985
 set baro_cf_alt =  0.965
 set baro_hardware = NONE
-set mag_hardware = NONE
-set mag_declination = 0
-set pid_process_denom = 2
+set mag_hardware = AUTO
+set mag_declination = 3100
+set pid_process_denom = 1
 set blackbox_rate_num = 1
 set blackbox_rate_denom = 1
 set blackbox_device = SPIFLASH
 set blackbox_on_motor_test = OFF
-set magzero_x = 0
-set magzero_y = 0
-set magzero_z = 0
+set magzero_x = 159
+set magzero_y = 33
+set magzero_z = -7
 set ledstrip_visual_beeper = OFF
 set displayport_msp_col_adjust = 0
 set displayport_msp_row_adjust = 0
 profile 0
 
-set gps_pos_p = 15
+set gps_pos_p = 5
 set gps_pos_i = 0
 set gps_pos_d = 0
-set gps_posr_p = 34
-set gps_posr_i = 14
-set gps_posr_d = 53
-set gps_nav_p = 25
-set gps_nav_i = 33
-set gps_nav_d = 83
+set gps_posr_p = 5
+set gps_posr_i = 2
+set gps_posr_d = 80
+set gps_nav_p = 5
+set gps_nav_i = 2
+set gps_nav_d = 80
 set yaw_p_limit = 500
 set pidsum_limit =  0.500
 set d_lowpass_type = BIQUAD
@@ -474,7 +472,7 @@ set level_limit = 55
 rateprofile 0
 rateprofile 0
 
-set rc_rate = 100
+set rc_rate = 80
 set rc_rate_yaw = 100
 set rc_expo = 0
 set rc_yaw_expo = 0
