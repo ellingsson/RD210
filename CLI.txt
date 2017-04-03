@@ -226,13 +226,13 @@ mode_color 6 9 0
 mode_color 6 10 0
 mode_color 7 0 3
 aux 0 0 0 1075 2100
-aux 1 27 0 1350 1650
-aux 2 1 0 1075 1225
-aux 3 1 1 1275 2100
-aux 4 4 1 1675 2100
-aux 5 10 1 1225 2100
-aux 6 29 0 1500 1650
-aux 7 18 1 1700 2100
+aux 1 27 0 1225 1650
+aux 2 1 0 1500 2100
+aux 3 4 1 1750 2100
+aux 4 9 0 1800 2100
+aux 5 10 0 1650 2100
+aux 6 29 0 1350 1500
+aux 7 18 1 1300 1700
 aux 8 0 0 900 900
 aux 9 0 0 900 900
 aux 10 0 0 900 900
@@ -268,7 +268,7 @@ rxfail 0 a
 rxfail 1 a
 rxfail 2 a
 rxfail 3 a
-rxfail 4 h
+rxfail 4 s 1575
 rxfail 5 h
 rxfail 6 h
 rxfail 7 h
@@ -424,15 +424,15 @@ set displayport_msp_col_adjust = 0
 set displayport_msp_row_adjust = 0
 profile 0
 
-set gps_pos_p = 5
+set gps_pos_p = 10
 set gps_pos_i = 0
 set gps_pos_d = 0
 set gps_posr_p = 5
-set gps_posr_i = 2
-set gps_posr_d = 80
+set gps_posr_i = 0
+set gps_posr_d = 20
 set gps_nav_p = 5
-set gps_nav_i = 2
-set gps_nav_d = 80
+set gps_nav_i = 0
+set gps_nav_d = 20
 set yaw_p_limit = 500
 set pidsum_limit =  0.500
 set d_lowpass_type = BIQUAD
